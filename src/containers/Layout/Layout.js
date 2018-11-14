@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Sidebar from 'components/Sidebar/Sidebar';
+import Cart from 'components/Cart/Cart';
 
 const Layout = ({ children }) => (
   <div className="view-container">
@@ -8,7 +8,7 @@ const Layout = ({ children }) => (
       <div className="row">
         <div className="col-md-9">{children}</div>
         <div className="col-md-3">
-          <Sidebar />
+          <Cart />
         </div>
       </div>
     </div>

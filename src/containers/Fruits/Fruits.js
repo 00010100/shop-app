@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ApiService from 'utils/api';
-import { fetchFruits } from 'actions';
+import { fetchFruits, addFruitToCart } from 'actions';
+
+import Spinner from 'components/Spinner/Spinner';
 
 import './Fruits.scss';
 
 @connect(
   (state) => ({
-    fruits: state.fruits.fruits,
+    fruits: state.fruits,
   }),
-  { fetchFruits },
+  { fetchFruits, addFruitToCart },
 )
 class Fruits extends Component {
   apiService = new ApiService();
@@ -20,14 +22,16 @@ class Fruits extends Component {
     });
   }
 
-  renderFruit(fruit, index) {
+  renderFruit(fruit) {
+    const { addFruitToCart } = this.props;
+
     return (
-      <div className="col-sm-3 col-lg-3 col-md-3 book-list" key={index}>
+      <div className="col-sm-3 col-lg-3 col-md-3" key={fruit.id}>
         <div className="thumbnail">
           <img className="img-thumbnail" src={fruit.image} alt={fruit.name} />
           <div className="fruit-content">
             <h4 className="">${fruit.price}</h4>
-            <button className="btn btn-primary" onClick={() => {}}>
+            <button className="btn btn-primary" onClick={() => addFruitToCart(fruit)}>
               Buy now!
             </button>
           </div>
@@ -39,11 +43,9 @@ class Fruits extends Component {
   render() {
     const { fruits } = this.props;
 
-    if (!fruits) return <div />;
+    if (fruits.length === 0) return <Spinner />;
 
-    return (
-      <div className="row">{fruits.map((fruit, index) => this.renderFruit(fruit, index))}</div>
-    );
+    return <div className="row">{fruits.map((fruit) => this.renderFruit(fruit))}</div>;
   }
 }
 
