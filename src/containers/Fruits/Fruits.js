@@ -1,6 +1,7 @@
 import * as _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import ApiService from 'utils/api';
 import { fetchFruits, addFruitToCart } from 'actions';
 import { getFruits } from 'selectors';
@@ -17,6 +18,12 @@ import './Fruits.scss';
 )
 class Fruits extends Component {
   apiService = new ApiService();
+
+  static propTypes = {
+    fruits: PropTypes.array,
+    fetchFruits: PropTypes.func,
+    addFruitToCart: PropTypes.func,
+  }
 
   componentDidMount() {
     this.apiService.getFruits().then(({ fruits }) => {
@@ -50,9 +57,9 @@ class Fruits extends Component {
   render() {
     const { fruits } = this.props;
 
-    if (fruits.length === 0) return <Spinner />;
+    if (_.size(fruits) === 0) return <Spinner />;
 
-    return <div className="row">{fruits.map((fruit) => this.renderFruit(fruit))}</div>;
+    return <div className="row">{_.map(fruits, (fruit) => this.renderFruit(fruit))}</div>;
   }
 }
 

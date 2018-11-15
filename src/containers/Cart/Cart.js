@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 
 import { removeFruitFromCart, cleanCart } from 'actions';
@@ -75,7 +76,14 @@ const Cart = ({ fruits, totalPrice, removeFruitFromCart, cleanCart }) => {
   );
 };
 
-const mapStateToProps = (state) => (console.log(state),{
+Cart.propTypes = {
+  fruits: PropTypes.array,
+  totalPrice: PropTypes.number,
+  removeFruitFromCart: PropTypes.func,
+  cleanCart: PropTypes.func,
+}
+
+const mapStateToProps = (state) => ({
   fruits: getCartFruitsWithCount(state),
   totalPrice: getTotalCartPrice(state),
 });
