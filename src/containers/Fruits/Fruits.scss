@@ -1,0 +1,37 @@
+.view-container {
+  padding-top: 50px;
+}
+
+.fruit-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 5px;
+
+  h4 {
+    margin: 0;
+  }
+}
+
+.fruit-container {
+  position: relative;
+}
+
+.fruit-sale {
+  position: absolute;
+  width: 120px;
+  height: 20px;
+  background-color: #fea800;
+  top: 5px;
+  right: 5px;
+
+  span {
+    font-size: 12px;
+    color: white;
+    display: block;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    line-height: 20px;
+  }
+}
