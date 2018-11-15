@@ -1,0 +1,44 @@
+.btn-user-checkout .btn {
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.item-checkout .first-column-checkout {
+  width: 12%;
+}
+.item-checkout td {
+  border-bottom: 1px solid #ddd;
+  border-top: none !important;
+  text-align: center;
+  vertical-align: middle !important;
+}
+.table-bordered {
+  border-collapse: separate;
+  border-radius: 4px;
+}
+.total-user-checkout {
+  margin-right: 20px;
+  margin-top: 15px;
+}
+.btn-user-checkout .btn {
+  margin-bottom: 10px;
+  width: 100%;
+}
+.item-checkout .delete-cart {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+.total {
+  margin: 5px 5px 5px 0;
+}
+
+.delete-cart{
+  background: url(../../assets/images/trash_16x16.gif) no-repeat 0 0;
+  display: block;
+  height: 16px;
+  width: 16px;
+}
+.delete-cart:hover{
+  cursor: pointer;
+}

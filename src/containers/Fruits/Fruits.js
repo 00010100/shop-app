@@ -1,7 +1,9 @@
+import * as _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ApiService from 'utils/api';
 import { fetchFruits, addFruitToCart } from 'actions';
+import { getFruits } from 'selectors';
 
 import Spinner from 'components/Spinner/Spinner';
 
@@ -9,7 +11,7 @@ import './Fruits.scss';
 
 @connect(
   (state) => ({
-    fruits: state.fruits,
+    fruits: getFruits(state),
   }),
   { fetchFruits, addFruitToCart },
 )
@@ -22,12 +24,17 @@ class Fruits extends Component {
     });
   }
 
+  shouldComponentUpdate(nextProps) {
+    return !_.isEqual(nextProps.fruits, this.props.fruits);
+  }
+
   renderFruit(fruit) {
     const { addFruitToCart } = this.props;
 
     return (
       <div className="col-sm-3 col-lg-3 col-md-3" key={fruit.id}>
-        <div className="thumbnail">
+        <div className="thumbnail fruit-container">
+          {fruit.sale && <div className="fruit-sale"><span>Sale</span></div>}
           <img className="img-thumbnail" src={fruit.image} alt={fruit.name} />
           <div className="fruit-content">
             <h4 className="">${fruit.price}</h4>

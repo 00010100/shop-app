@@ -1,25 +1,43 @@
-export const getFruits = (state) => [state.fruits];
+import * as _ from 'lodash';
 
-export const getTotalCartCount = (state) => state.cart.length;
+export const getFruits = (state) => state.fruits.fruits;
+
+export const getFruitById = (state, id) => _.filter(state.cart, id);
+
+export const getTotalCartCount = (state) => _.size(state.cart);
 
 export const getTotalCartPrice = (state) => {
-  const fruits = state.cart;
-
   let price = 0;
   let counter = 0;
 
-  for (let i = 0; i < fruits.length; i++) {
-    if (fruits[i].name === 'Papaya') {
+  _.map(state.cart, (item) => {
+    if (item.sale) {
       counter++;
+
       if (counter % 3 === 0) {
         price += 0;
       } else {
-        price += fruits[i].price;
+        price += item.price;
       }
     } else {
-      price += fruits[i].price;
+      price += item.price;
     }
-  }
+  });
 
   return price;
+};
+
+export const getCartFruitsWithCount = (state) => {
+  const unique = _.uniqBy(state.cart, 'id');
+
+  const fruitCount = (id) => _.filter(state.cart, ['id', id]).length;
+
+  const fruitWithCount = (fruit) => ({
+    ...fruit,
+    count: fruitCount(fruit.id),
+  });
+
+  const fruits = _.map(_.unionBy(unique, (item) => getFruitById(state, item.id)), fruitWithCount);
+
+  return fruits;
 };

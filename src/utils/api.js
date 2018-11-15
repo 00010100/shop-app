@@ -1,5 +1,5 @@
 export default class ApiService {
-  _baseUrl = 'http://www.mocky.io/v2/5beb2f672f00008041da3e27';
+  _baseUrl = 'http://www.mocky.io/v2/5bedb7cd330000c943a297ad';
 
   getResources = async () => {
     const res = await fetch(this._baseUrl);
