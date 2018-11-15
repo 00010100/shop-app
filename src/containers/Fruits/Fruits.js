@@ -23,7 +23,7 @@ class Fruits extends Component {
     fruits: PropTypes.array,
     fetchFruits: PropTypes.func,
     addFruitToCart: PropTypes.func,
-  }
+  };
 
   componentDidMount() {
     this.apiService.getFruits().then(({ fruits }) => {
@@ -41,7 +41,11 @@ class Fruits extends Component {
     return (
       <div className="col-sm-3 col-lg-3 col-md-3" key={fruit.id}>
         <div className="thumbnail fruit-container">
-          {fruit.sale && <div className="fruit-sale"><span>Sale</span></div>}
+          {fruit.sale && (
+            <div className="fruit-sale">
+              <span>Sale</span>
+            </div>
+          )}
           <img className="img-thumbnail" src={fruit.image} alt={fruit.name} />
           <div className="fruit-content">
             <h4 className="">${fruit.price}</h4>

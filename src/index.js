@@ -8,6 +8,7 @@ import store from 'store';
 import App from 'containers/App';
 import Fruits from 'containers/Fruits/Fruits';
 import Cart from 'containers/Cart/Cart';
+import NotFound from 'containers/NotFound/NotFound';
 
 const history = syncHistoryWithStore(browserHistory, store);
 
@@ -18,6 +19,7 @@ render(
         <Route path="/" component={Fruits} />
       </Route>
       <Route path="/cart" component={Cart} />
+      <Route path="*" exact={true} component={NotFound} />
     </Router>
   </Provider>,
   document.getElementById('root'),
